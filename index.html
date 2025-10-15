@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -13,6 +13,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      overflow: hidden; /* Evita scroll cuando el botón se mueve */
+      position: relative;
     }
 
     .pantalla {
@@ -47,6 +49,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
     }
 
     button {
@@ -67,6 +70,8 @@
 
     #btnNo {
       background-color: #f44336;
+      position: absolute;
+      transition: all 0.4s ease; /* Movimiento suave */
     }
 
     #btnNo:hover {
@@ -80,7 +85,6 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-    /* Fondos por pantalla */
     #pantallaPregunta {
       background-color: #f3f3f3;
     }
@@ -93,7 +97,7 @@
 </head>
 <body>
 
-  <!-- Pantalla 1: Pregunta -->
+  <!-- Pantalla 1 -->
   <div class="pantalla activa" id="pantallaPregunta">
     <h1>¿Quieres ser mi noviecito?</h1>
     <div id="buttons">
@@ -103,10 +107,10 @@
     <img src="img/2.jpeg" alt="Imagen linda" width="200">
   </div>
 
-  <!-- Pantalla 2: Agradecimiento -->
+  <!-- Pantalla 2 -->
   <div class="pantalla" id="pantallaRespuesta">
     <h1>¡Gracias por aceptar ser mi noviooo!</h1>
-    <p>Quiero que sepas que eres una persona muy especial para mí y estoy muy emocionada de comenzar esta hermosa relación contigo.</p>
+    <p>Quiero que sepas que eres una persona muy especial para mí y estoy muy emocionada de comenzar esta hermosa relación contigo 💕.</p>
   </div>
 
   <script>
@@ -116,16 +120,21 @@
     }
 
     function mueveElBoton() {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      const newWidth = Math.random() * (width - 100);
-      const newHeight = Math.random() * (height - 50);
       const btnNo = document.getElementById("btnNo");
-      btnNo.style.position = "absolute";
-      btnNo.style.left = newWidth + "px";
-      btnNo.style.top = newHeight + "px";
+      const btnWidth = btnNo.offsetWidth;
+      const btnHeight = btnNo.offsetHeight;
+
+      const maxX = window.innerWidth - btnWidth - 20;
+      const maxY = window.innerHeight - btnHeight - 20;
+
+      const newX = Math.random() * maxX;
+      const newY = Math.random() * maxY;
+
+      btnNo.style.left = `${newX}px`;
+      btnNo.style.top = `${newY}px`;
     }
   </script>
 
 </body>
 </html>
+      
