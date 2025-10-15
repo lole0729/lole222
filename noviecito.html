@@ -152,48 +152,46 @@
     <p>Quiero que sepas que eres una persona muy especial para mí y estoy muy emocionada de comenzar esta hermosa relación contigo.  
       ¡Prometo hacerte muy feliz cada día! 💕</p>
   </div>
-
   <script>
-    function mostrarRespuesta() {
-      document.getElementById("pantallaPregunta").classList.remove("activa");
-      document.getElementById("pantallaRespuesta").classList.add("activa");
-    }
+  function mostrarRespuesta() {
+    document.getElementById("pantallaPregunta").classList.remove("activa");
+    document.getElementById("pantallaRespuesta").classList.add("activa");
+  }
 
-    function mueveElBoton() {
-      const btnNo = document.getElementById("btnNo");
-      const btnWidth = btnNo.offsetWidth;
-      const btnHeight = btnNo.offsetHeight;
+  function mueveElBoton() {
+    const btnNo = document.getElementById("btnNo");
+    const btnWidth = btnNo.offsetWidth;
+    const btnHeight = btnNo.offsetHeight;
 
-      const maxX = window.innerWidth - btnWidth - 20;
-      const maxY = window.innerHeight - btnHeight - 20;
+    // margen mínimo para que no se salga de pantalla
+    const margen = 50;
 
-      const newX = Math.random() * maxX;
-      const newY = Math.random() * maxY;
+    const maxX = window.innerWidth - btnWidth - margen;
+    const maxY = window.innerHeight - btnHeight - margen;
 
-      btnNo.style.left = `${newX}px`;
-      btnNo.style.top = `${newY}px`;
-    }
+    const newX = margen + Math.random() * (maxX - margen);
+    const newY = margen + Math.random() * (maxY - margen);
 
-    // Crear corazones flotantes
-    function crearCorazones() {
-      const contenedor = document.getElementById("hearts-container");
-      const heart = document.createElement("div");
-      heart.classList.add("heart");
-      heart.innerHTML = "❤️";
+    btnNo.style.left = `${newX}px`;
+    btnNo.style.top = `${newY}px`;
+  }
 
-      // posición aleatoria
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+  // corazones flotantes
+  function crearCorazones() {
+    const contenedor = document.getElementById("hearts-container");
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
 
-      contenedor.appendChild(heart);
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (4 + Math.random() * 3) + "s";
 
-      setTimeout(() => {
-        heart.remove();
-      }, 7000);
-    }
+    contenedor.appendChild(heart);
+    setTimeout(() => heart.remove(), 7000);
+  }
 
-    setInterval(crearCorazones, 500);
-  </script>
+  setInterval(crearCorazones, 500);
+</script>
 </body>
 </html>
 >
